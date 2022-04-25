@@ -1,4 +1,5 @@
-X = 999
+X = 9999999
+
 
 def setX(new):
     global X
