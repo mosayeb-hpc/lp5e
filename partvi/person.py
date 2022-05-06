@@ -1,46 +1,64 @@
-# File person.py (start)
-# Add record field initialization
-# Add defaults for constructor arguments
-# Add incremental self-test code
-# Allow this file to be imported as well as run/tested
-# Add methods to encapsulate operations for maintainability
-# Add __repr__ overload method for printing objects
+"""
+File person.py (start)
+Add record field initialization
+Add defaults for constructor arguments
+Add incremental self-test code
+Allow this file to be imported as well as run/tested
+Add methods to encapsulate operations for maintainability
+Add __repr__ overload method for printing objects
+"""
+from __future__ import print_function
+
 
 class Person:               # Start a class
-    def __init__(self, name, job=None, pay=0): 
+    """
+    Generic class for a Person
+    """
+    def __init__(self, name, job=None, pay=0):
         self.name = name
         self.job = job
         self.pay = pay
-    def lastName(self):
+
+    def last_name(self):
+        """
+        Return last name of a person
+        """
         return self.name.split()[-1]
-    def giveRaise(self, percent):
+    def give_raise(self, percent):
+        """
+        Give raise to person's pay
+        """
         self.pay = int(self.pay * (1 + percent))
+
     def __repr__(self):
-        return '[%s: %s, %s]' % (self.__class__.__name__
-                ,self.name, self.pay)
+        return '[Person: %s, %s]' % (self.name, self.pay)
 
 
-class Manager(Person):
-    def __init__(self, name, pay):
-        Person.__init__(self, name, 'mgr', pay)
-    def giveRaise(self, percent, bonus=0.10):
-        Person.giveRaise(self, percent + bonus)
+class Manager(Person):              # Define a subclass of Person
+    """
+    Inherit Person's attributes
+    Customize give_raise method off Person class (overload it)
+    """
+    def __init__(self, name, pay=0):
+        Person.__init__(self, name, "mgr", pay)
+
+    def give_raise(self, percent, bonus=.10):       # Redefine at this level
+        Person.give_raise(self, percent + bonus)    # Call Person's version
 
 
 if __name__ == "__main__":
-    foo = Person("Foo Smith")
-    bar = Person('Bar Jones', job='dev', pay=100000)
-    print(foo)
-    print(bar)
-    print(foo.lastName(), bar.lastName())
-    bar.giveRaise(0.10)
-    print(bar)
-    baz = Manager('Baz Jones', 500000)
-    baz.giveRaise(.10)
-    print(baz.lastName())
-    print(baz)
-    print('--All three--')
-    for obj in (foo, bar, baz):
-        obj.giveRaise(0.10)
+    bob = Person("Bob Smith")
+    sue = Person("Sue Jones", job="dev", pay=100000)
+    print(bob)
+    print(sue)
+    print(bob.last_name(), sue.last_name())
+    sue.give_raise(.10)
+    print(sue)
+    tom = Manager("Tom Jones", 50000)
+    tom.give_raise(.10)
+    print(tom.last_name())
+    print(tom)
+    print("--All Three--")
+    for obj in (bob, sue, tom):
+        obj.give_raise(.10)
         print(obj)
-

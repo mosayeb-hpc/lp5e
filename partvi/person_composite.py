@@ -15,10 +15,13 @@ class Person:               # Start a class
         self.name = name
         self.job = job
         self.pay = pay
-    def lastName(self):
+
+    def last_Name(self):
         return self.name.split()[-1]
-    def giveRaise(self, percent):
+
+    def give_raise(self, percent):
         self.pay = int(self.pay * (1 + percent))
+
     def __repr__(self):
         return '[Person: %s, %s]' % (self.name, self.pay)
 
@@ -26,27 +29,30 @@ class Person:               # Start a class
 class Manager:
     def __init__(self, name, pay):
         self.person = Person(name, 'mgr', pay)
-    def giveRaise(self, percent, bonus=0.10):
-        self.person.giveRaise(percent + bonus)
+
+    def give_raise(self, percent, bonus=0.10):
+        self.person.give_raise(percent + bonus)
+
     def __getattr__(self, attr):
         return getattr(self.person, attr)
-#    def __repr__(self):
-#        return str(self.person)
+
+    def __repr__(self):
+        return str(self.person)
 
 
 if __name__ == "__main__":
-    foo = Person("Foo Smith")
-    bar = Person('Bar Jones', job='dev', pay=100000)
-    print(foo)
-    print(bar)
-    print(foo.lastName(), bar.lastName())
-    bar.giveRaise(0.10)
-    print(bar)
-    baz = Manager('Baz Jones', 50000)
-    baz.giveRaise(.10)
-    print(baz.lastName())
-    print(baz)
+    bob = Person("Bob Smith")
+    sue = Person('Sue Jones', job='dev', pay=100000)
+    print(bob)
+    print(sue)
+    print(bob.last_Name(), sue.last_Name())
+    sue.give_raise(0.10)
+    print(sue)
+    tom = Manager('Tom Jones', 50000)
+    tom.give_raise(.10)
+    print(tom.last_Name())
+    print(tom)
     print('--All three--')
-    for obj in (foo, bar, baz):
-        obj.giveRaise(0.10)
+    for obj in (bob, sue, tom):
+        obj.give_raise(0.10)
         print(obj)
