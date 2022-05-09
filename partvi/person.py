@@ -1,16 +1,11 @@
 """
-File person.py (start)
-Add record field initialization
-Add defaults for constructor arguments
-Add incremental self-test code
-Allow this file to be imported as well as run/tested
-Add methods to encapsulate operations for maintainability
-Add __repr__ overload method for printing objects
+Record and processinformation about people.
+Run this file directly to test its classes
 """
-from __future__ import print_function
+from classtools import AttrDisplay                          # Use generic display tool
 
 
-class Person:               # Start a class
+class Person(AttrDisplay):                                  # Mix in a repr at this level
     """
     Generic class for a Person
     """
@@ -19,31 +14,29 @@ class Person:               # Start a class
         self.job = job
         self.pay = pay
 
-    def last_name(self):
+    def last_name(self):                                    # Assume last is last
         """
         Return last name of a person
         """
         return self.name.split()[-1]
-    def give_raise(self, percent):
+
+    def give_raise(self, percent):                          # Percent must be 0..1
         """
         Give raise to person's pay
         """
         self.pay = int(self.pay * (1 + percent))
 
-    def __repr__(self):
-        return '[Person: %s, %s]' % (self.name, self.pay)
 
-
-class Manager(Person):              # Define a subclass of Person
+class Manager(Person):
     """
     Inherit Person's attributes
     Customize give_raise method off Person class (overload it)
     """
     def __init__(self, name, pay=0):
-        Person.__init__(self, name, "mgr", pay)
+        Person.__init__(self, name, "mgr", pay)             # Job name is implied
 
-    def give_raise(self, percent, bonus=.10):       # Redefine at this level
-        Person.give_raise(self, percent + bonus)    # Call Person's version
+    def give_raise(self, percent, bonus=.10):
+        Person.give_raise(self, percent + bonus)
 
 
 if __name__ == "__main__":
@@ -62,3 +55,4 @@ if __name__ == "__main__":
     for obj in (bob, sue, tom):
         obj.give_raise(.10)
         print(obj)
+        
