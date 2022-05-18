@@ -34,6 +34,10 @@ class Squares1:
         else:
             raise StopIteration
 
+def gsquares(start, stop):
+    for i in range(start, stop):
+        yield i ** 2
+
 
 if __name__ == "__main__":
     for i in Squares(0, 10):
@@ -45,3 +49,6 @@ if __name__ == "__main__":
     for v in X:
         print(v)
     print(list(X))
+    for i in gsquares(1, 6):
+        print(i, end=' ')
+    print("")
