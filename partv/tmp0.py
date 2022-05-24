@@ -5,6 +5,7 @@ import sys
 
 u = u'مصیب بهلولی'
 for c in u:
-    print(c)
+    print(c, end=' ')
+print()
 
 print (sys.argv[0])
