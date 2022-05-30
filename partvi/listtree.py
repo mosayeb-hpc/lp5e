@@ -1,7 +1,7 @@
 #!python
 # File listtree.py
 
-class ListTree:
+class ListTree(object):
     def __attrnames(self, obj, indent):
         spaces = ' ' * (indent + 1)
         result = ''
