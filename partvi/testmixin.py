@@ -39,5 +39,5 @@ def testByName(modname, classname, sept=False):
 
 if __name__ == "__main__":
     testByName('listinstance', 'ListInstance', True)
-    #testByName('listinherited', 'ListInherited', True)
-    #testByName('listtree', 'ListTree', False)
+    testByName('listinherited', 'ListInherited', True)
+    testByName('listtree', 'ListTree', False)

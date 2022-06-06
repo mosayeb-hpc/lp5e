@@ -1,12 +1,12 @@
 class Spam:
     numInstances = 0
 
+    @classmethod
     def count(cls):
         cls.numInstances += 1
 
     def __init__(self):
         self.count()
-    count = classmethod(count)
 
 
 class Sub(Spam):
@@ -18,3 +18,11 @@ class Sub(Spam):
 
 class Other(Spam):
     numInstances = 0
+
+
+if __name__ == "__main__":
+    x = Spam()
+    y1, y2 = Sub(), Sub()
+    z1, z2, z3 = Other(), Other(), Other()
+    print(x.numInstances, y1.numInstances, z1.numInstances)
+    print(Spam.numInstances, Sub.numInstances, Other.numInstances)
