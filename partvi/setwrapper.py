@@ -52,3 +52,8 @@ if __name__ == "__main__":
     print(X | Y)
     print(X & Y)
 
+    S = Set('abcdefghijklmnopqrstuvwxyz')
+    print(S[10])
+
+    for c in S:
+        print(c)

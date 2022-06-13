@@ -6,7 +6,8 @@ one specific version on stmts, "pybench_cases.py -a" to test all pythons
 listed, or a "py -3 pybench_cases.py -a -t" to trace command lines too.
 """
 
-import pybench, sys
+import pybench
+import sys
 
 pythons = [
     (1, 'python3'),
@@ -34,5 +35,5 @@ stmts1 = [
 ]
 
 tracecmd = '-t' in sys.argv
-pythons  = pythons if '-a' in sys.argv else None
+pythons = pythons if '-a' in sys.argv else None
 pybench.runner(stmts, pythons, tracecmd)

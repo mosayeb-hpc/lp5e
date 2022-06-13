@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/mosayeb/computer/code/python/lp5e/badly.py", line 9, in <module>
+    inverse(0)
+  File "/home/mosayeb/computer/code/python/lp5e/badly.py", line 5, in inverse
+    return 1 / x
+ZeroDivisionError: division by zero

@@ -1,0 +1,1 @@
+print "strin", '1'

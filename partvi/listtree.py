@@ -36,12 +36,17 @@ class ListTree(object):
         self.__visited = dict()
         here = self.__attrnames(self, 0)
         above = self.__listclass(self.__class__, 4)
-        return "<Instance of %s, address %s:\n%s%s>" % (
+        return "<Instance of %s(%s), address %s:\n%s%s>" % (
             self.__class__.__name__,
+            self._supers(),
             id(self),
             here,
             above
         )
+
+    def _supers(self):
+        return ', '.join(
+            sup.__name__ for sup in self.__class__.__bases__)
 
 
 if __name__ == "__main__":
